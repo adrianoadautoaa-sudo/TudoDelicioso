@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tudo Delicioso Online — Receitas fáceis para todo dia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF4E6;
+    --paper:#FFFCF5;
+    --ink:#2A2118;
+    --ink-soft:#5A5044;
+    --tomato:#E1502B;
+    --tomato-dark:#C13F1F;
+    --mustard:#F0A93E;
+    --herb:#51703F;
+    --line:#E8DCC0;
+    --card-shadow: 0 2px 0 rgba(42,33,24,0.06), 0 10px 24px -12px rgba(42,33,24,0.25);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    margin:0;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .tag-font{ font-family:'Caveat',cursive; }
+  a{ color:inherit; }
+  img{max-width:100%;display:block;}
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,244,230,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .logo{
+    font-family:'Fraunces',serif; font-weight:700; font-size:26px;
+    display:flex; align-items:baseline; gap:2px;
+  }
+  .logo span{ color:var(--tomato); }
+  .nav-links{
+    display:flex; gap:28px; list-style:none; margin:0; padding:0;
+    font-size:14.5px; font-weight:600;
+  }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{ color:var(--tomato); }
+  .nav-cta{
+    background:var(--tomato); color:#fff; border:none;
+    padding:10px 18px; border-radius:100px; font-weight:700; font-size:14px;
+    cursor:pointer; font-family:'Inter',sans-serif;
+    box-shadow:0 4px 0 var(--tomato-dark);
+    transition:transform .1s;
+  }
+  .nav-cta:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--tomato-dark); }
+  .burger{ display:none; }
+
+  /* HERO */
+  .hero{
+    padding:64px 0 40px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  .hero-eyebrow{
+    font-family:'Caveat',cursive; font-size:22px; color:var(--herb); font-weight:700;
+    display:inline-block; transform:rotate(-2deg); margin-bottom:6px;
+  }
+  .hero h1{ font-size:52px; line-height:1.05; }
+  .hero h1 em{ font-style:normal; color:var(--tomato); }
+  .hero h1 .u2{ color:var(--mustard); }
+  .hero p{ font-size:17px; color:var(--ink-soft); max-width:460px; margin-top:16px;}
+  .hero-actions{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--tomato); color:#fff; border:none; padding:14px 26px;
+    border-radius:100px; font-weight:700; font-size:15px; cursor:pointer;
+    box-shadow:0 4px 0 var(--tomato-dark);
+  }
+  .btn-secondary{
+    background:transparent; color:var(--ink); border:2px solid var(--ink);
+    padding:12px 24px; border-radius:100px; font-weight:700; font-size:15px; cursor:pointer;
+  }
+  .hero-search{
+    margin-top:26px; display:flex; max-width:420px; background:var(--paper);
+    border:2px solid var(--line); border-radius:100px; padding:6px 6px 6px 18px;
+  }
+  .hero-search input{
+    border:none; outline:none; background:transparent; flex:1; font-family:'Inter'; font-size:14px;
+  }
+  .hero-search button{
+    background:var(--ink); color:#fff; border:none; border-radius:100px;
+    padding:10px 18px; font-weight:700; cursor:pointer; font-size:13px;
+  }
+  .hero-art{
+    background:var(--paper); border:1px solid var(--line); border-radius:28px;
+    padding:14px; box-shadow:var(--card-shadow); position:relative;
+  }
+  .hero-art img{ border-radius:20px; width:100%; height:340px; object-fit:cover; }
+  .hero-badge{
+    position:absolute; top:-14px; right:-14px; background:var(--mustard);
+    color:var(--ink); font-family:'Caveat',cursive; font-weight:700; font-size:20px;
+    width:88px; height:88px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    text-align:center; transform:rotate(8deg); border:2px solid var(--ink); line-height:1.1;
+  }
+
+  /* AD SLOT */
+  .ad-slot{
+    max-width:1180px; margin:36px auto; padding:0 24px;
+  }
+  .ad-slot .ad-box{
+    border:1px dashed #C9BC9A; border-radius:12px; background:#F4ECD8;
+    padding:14px; text-align:center; font-size:12px; color:#8A7E63;
+    letter-spacing:.04em; text-transform:uppercase; font-weight:600;
+  }
+
+  /* SECTION HEADERS */
+  .section{ padding:56px 0; }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 36px; }
+  .section-head .kicker{
+    font-family:'Caveat',cursive; color:var(--tomato); font-size:20px; font-weight:700;
+  }
+  .section-head h2{ font-size:36px; margin-top:4px; }
+  .section-head p{ color:var(--ink-soft); margin-top:10px; font-size:15px; }
+
+  /* POPULAR GRID */
+  .grid-4{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  .recipe-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    overflow:hidden; box-shadow:var(--card-shadow); cursor:pointer;
+    display:flex; flex-direction:column; transition:transform .15s;
+  }
+  .recipe-card:hover{ transform:translateY(-4px); }
+  .recipe-card .thumb{ height:150px; overflow:hidden; position:relative; }
+  .recipe-card .thumb img{ width:100%; height:100%; object-fit:cover; }
+  .recipe-card .chip{
+    position:absolute; top:10px; left:10px; background:var(--tomato); color:#fff;
+    font-size:11px; font-weight:700; padding:4px 10px; border-radius:100px;
+  }
+  .recipe-card .body{ padding:16px 16px 18px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .recipe-card h4{ font-size:17px; line-height:1.25; }
+  .recipe-card .meta{ font-size:12.5px; color:var(--ink-soft); display:flex; gap:10px; }
+  .recipe-card .cta{
+    margin-top:auto; font-size:13px; font-weight:700; color:var(--tomato);
+    display:flex; align-items:center; gap:4px;
+  }
+
+  /* CATEGORY INDEX CARDS */
+  .cat-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  .cat-card{
+    position:relative; background:var(--paper); border:1px solid var(--line);
+    border-radius:4px 14px 14px 14px; box-shadow:var(--card-shadow);
+    padding:20px 18px 18px; cursor:pointer; min-height:118px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    transition:transform .15s;
+  }
+  .cat-card:hover{ transform:translateY(-3px); }
+  .cat-tab{
+    position:absolute; top:-11px; left:16px; background:var(--herb); color:#fff;
+    font-family:'Caveat',cursive; font-weight:700; font-size:13px;
+    padding:2px 12px 4px; border-radius:6px 6px 0 0;
+  }
+  .cat-card h4{ font-size:17px; }
+  .cat-card .count{ font-size:12px; color:var(--ink-soft); margin-top:4px; }
+
+  /* AIRFRYER + KIDS BANDS */
+  .band{ padding:56px 0; }
+  .band.dark{
+    background:var(--ink); color:#F6EEDD;
+  }
+  .band.dark .section-head p{ color:#C9BEA8; }
+  .band.dark .recipe-card{ background:#342A1F; border-color:#4a3d2c; }
+  .band.dark .recipe-card h4{ color:#F6EEDD; }
+  .band.dark .recipe-card .meta{ color:#B8AC93; }
+  .band.mustard{ background:#FBEBCB; }
+
+  /* FILTER BAR */
+  .filter-bar{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:22px;
+  }
+  .filter-chip{
+    border:1.5px solid var(--line); background:var(--paper); color:var(--ink-soft);
+    padding:8px 16px; border-radius:100px; font-size:13.5px; font-weight:600;
+    cursor:pointer; font-family:'Inter',sans-serif;
+  }
+  .filter-chip.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+  .all-search{
+    display:block; margin:0 auto; max-width:420px; width:100%;
+    padding:12px 18px; border-radius:100px; border:2px solid var(--line);
+    outline:none; font-family:'Inter'; font-size:14px; background:var(--paper);
+  }
+  .empty-state{
+    text-align:center; color:var(--ink-soft); padding:40px 0; font-size:14.5px; grid-column:1/-1;
+  }
+
+  /* NEWSLETTER */
+  .newsletter{
+    background:var(--tomato); border-radius:24px; padding:44px 40px; color:#fff;
+    display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  }
+  .newsletter h3{ font-size:26px; max-width:360px; }
+  .newsletter form{ display:flex; gap:10px; flex-wrap:wrap; }
+  .newsletter input{
+    padding:12px 16px; border-radius:100px; border:none; outline:none; min-width:220px;
+  }
+  .newsletter button{
+    background:var(--ink); color:#fff; border:none; padding:12px 22px; border-radius:100px;
+    font-weight:700; cursor:pointer;
+  }
+
+  /* POLÍTICA DE PRIVACIDADE */
+  .policy-section{ background:var(--paper); border-top:1px solid var(--line); padding:56px 0; }
+  .policy-wrap{ max-width:780px; margin:0 auto; padding:0 24px; }
+  .policy-wrap .updated{ color:var(--ink-soft); font-size:13px; margin-bottom:28px; }
+  .policy-box{ background:var(--cream); border:1px solid var(--line); border-radius:14px; padding:18px 22px; margin-bottom:30px; }
+  .policy-wrap h3{ font-size:19px; margin:26px 0 8px; color:var(--herb); }
+  .policy-wrap p, .policy-wrap li{ font-size:14.5px; color:var(--ink); line-height:1.7; }
+  .policy-wrap ul{ padding-left:20px; }
+
+  footer{ background:#211A12; color:#C9BEA8; padding:48px 0 24px; margin-top:40px; }
+  .foot-grid{ display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; }
+  footer h5{ color:#fff; font-family:'Inter'; font-size:14px; margin-bottom:12px; }
+  footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; font-size:13.5px; }
+  footer a{ text-decoration:none; color:#C9BEA8; }
+  footer a:hover{ color:#fff; }
+  .foot-bottom{ border-top:1px solid #3A3020; margin-top:32px; padding-top:18px; font-size:12.5px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  /* MODAL */
+  .overlay{
+    display:none; position:fixed; inset:0; background:rgba(20,15,8,0.55); z-index:100;
+    align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto;
+  }
+  .overlay.open{ display:flex; }
+  .modal{
+    background:var(--paper); border-radius:20px; max-width:640px; width:100%;
+    padding:0; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.3);
+  }
+  .modal .m-thumb{ height:220px; overflow:hidden; position:relative; }
+  .modal .m-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .modal-close{
+    position:absolute; top:14px; right:14px; background:#fff; border:none; border-radius:50%;
+    width:34px; height:34px; font-size:16px; cursor:pointer; font-weight:700;
+  }
+  .modal .m-body{ padding:26px 28px 32px; }
+  .modal .m-tag{ font-family:'Caveat',cursive; color:var(--tomato); font-weight:700; font-size:18px; }
+  .modal h3{ font-size:26px; margin-top:2px; }
+  .modal .m-meta{ display:flex; gap:16px; margin:14px 0 20px; font-size:13px; color:var(--ink-soft); flex-wrap:wrap; }
+  .modal .m-meta span{ background:var(--cream); padding:5px 12px; border-radius:100px; border:1px solid var(--line); }
+  .modal h4{ font-size:15px; margin:20px 0 10px; color:var(--herb); }
+  .modal ul, .modal ol{ margin:0; padding-left:20px; font-size:14.5px; }
+  .modal li{ margin-bottom:7px; }
+
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    .hero{ grid-template-columns:1fr; }
+    .hero h1{ font-size:36px; }
+    .grid-4, .cat-grid{ grid-template-columns:repeat(2,1fr); }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .newsletter{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Tudo Delicioso<span> Online.</span></div>
+    <ul class="nav-links">
+      <li><a href="#populares">Populares</a></li>
+      <li><a href="#categorias">Categorias</a></li>
+      <li><a href="#airfryer">Airfryer</a></li>
+      <li><a href="#ferias">Férias das Crianças</a></li>
+      <li><a href="#todas">Todas as Receitas</a></li>
+    </ul>
+    <button class="nav-cta">Receita do Dia</button>
+  </div>
+</header>
+
+<section class="wrap hero">
+  <div>
+    <span class="hero-eyebrow">receitas de verdade, feitas em casa</span>
+    <h1>Tudo o que você <em>ama</em> cozinhar está <span class="u2">aqui</span></h1>
+    <p>De bolos e tortas a pratos saudáveis, receitas fáceis, testadas e explicadas passo a passo — para todo dia e para as ocasiões especiais.</p>
+    <div class="hero-search">
+      <input type="text" id="searchInput" placeholder="Buscar por receita, ingrediente ou categoria...">
+      <button onclick="runSearch()">Buscar</button>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('categorias').scrollIntoView()">Explorar Categorias</button>
+      <button class="btn-secondary" onclick="document.getElementById('populares').scrollIntoView()">Ver Mais Populares</button>
+    </div>
+  </div>
+  <div class="hero-art">
+    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=1000&auto=format&fit=crop" alt="Mesa farta com pratos variados">
+    <div class="hero-badge">+80<br>receitas</div>
+  </div>
+</section>
+
+<div class="ad-slot">
+  <div class="ad-box">Espaço reservado — Google AdSense (banner topo, 728×90 / responsivo)</div>
+</div>
+
+<!-- POPULARES -->
+<section class="section wrap" id="populares">
+  <div class="section-head">
+    <span class="kicker">as queridinhas da casa</span>
+    <h2>Receitas Mais Populares</h2>
+    <p>As receitas mais acessadas e refeitas pela nossa comunidade — clássicos que nunca decepcionam.</p>
+  </div>
+  <div class="grid-4" id="popularGrid"></div>
+</section>
+
+<!-- CATEGORIAS -->
+<section class="section wrap" id="categorias">
+  <div class="section-head">
+    <span class="kicker">encontre pelo que você quer cozinhar hoje</span>
+    <h2>Explore por Categoria</h2>
+    <p>Do doce ao salgado, do rápido ao especial — cada categoria com receitas completas e testadas.</p>
+  </div>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<div class="ad-slot">
+  <div class="ad-box">Espaço reservado — Google AdSense (retângulo in-feed, 336×280 / responsivo)</div>
+</div>
+
+<!-- AIRFRYER -->
+<section class="band dark" id="airfryer">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" style="color:var(--mustard)">crocante, rápido e com menos óleo</span>
+      <h2 style="color:#F6EEDD">Receitas para Airfryer</h2>
+      <p>Os clássicos da casa, adaptados para a fritadeira sem óleo — mais praticidade no dia a dia.</p>
+    </div>
+    <div class="grid-4" id="airfryerGrid"></div>
+  </div>
+</section>
+
+<!-- FÉRIAS DAS CRIANÇAS -->
+<section class="band mustard" id="ferias">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">mãos na massa em família</span>
+      <h2>Receitas para as Férias das Crianças</h2>
+      <p>Receitas fáceis, divertidas e seguras para fazer com a garotada, com ajuda de um adulto.</p>
+    </div>
+    <div class="grid-4" id="kidsGrid"></div>
+  </div>
+</section>
+
+<!-- TODAS AS RECEITAS -->
+<section class="section wrap" id="todas">
+  <div class="section-head">
+    <span class="kicker">o catálogo completo</span>
+    <h2>Todas as Receitas</h2>
+    <p>Filtre por categoria ou busque pelo nome da receita para encontrar exatamente o que você quer cozinhar hoje.</p>
+  </div>
+  <div class="filter-bar" id="filterBar"></div>
+  <input type="text" id="allSearch" class="all-search" placeholder="Buscar por nome, ex: bolo, frango, sopa...">
+  <div class="grid-4" id="allGrid" style="margin-top:24px;"></div>
+
+  <div class="newsletter" style="margin-top:56px;">
+    <div>
+      <h3>Quer receber novas receitas de Tudo Delicioso Online direto no seu e-mail?</h3>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Cadastro em breve disponível!');">
+      <input type="email" placeholder="seu@email.com" required>
+      <button type="submit">Quero Receber</button>
+    </form>
+  </div>
+</section>
+
+<div class="ad-slot">
+  <div class="ad-box">Espaço reservado — Google AdSense (banner antes do rodapé, responsivo)</div>
+</div>
+
+<section class="policy-section" id="politica-de-privacidade">
+  <div class="policy-wrap">
+    <span class="kicker">transparência com quem visita nosso site</span>
+    <h2 style="font-size:32px; margin-top:6px;">Política de Privacidade</h2>
+    <p class="updated">Última atualização: 17 de julho de 2026</p>
+
+    <div class="policy-box">
+      <p>Esta Política de Privacidade explica como o <strong>Tudo Delicioso Online</strong> coleta, usa e protege as informações dos visitantes do site, e como você pode exercer seus direitos sobre esses dados, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).</p>
+    </div>
+
+    <h3>1. Quem somos</h3>
+    <p>O Tudo Delicioso Online é um site de receitas culinárias organizado por categorias (Bolos e Tortas, Carnes, Aves, Peixes e Frutos do Mar, Saladas e Molhos, Sopas, Massas, Bebidas, Doces e Sobremesas, Lanches, Alimentação Saudável, Airfryer e Férias das Crianças, entre outras). Nosso objetivo é oferecer receitas claras, testadas e fáceis de seguir para o dia a dia.</p>
+
+    <h3>2. Quais dados coletamos</h3>
+    <ul>
+      <li><strong>Dados de navegação:</strong> páginas visitadas, tempo de permanência, tipo de dispositivo e navegador, coletados automaticamente por meio de cookies e tecnologias semelhantes.</li>
+      <li><strong>Dados fornecidos por você:</strong> nome e e-mail, caso você se cadastre em nossa newsletter ou entre em contato conosco.</li>
+      <li><strong>Dados coletados por parceiros de publicidade:</strong> conforme detalhado na seção 4 abaixo.</li>
+    </ul>
+
+    <h3>3. Como usamos os dados</h3>
+    <ul>
+      <li>Para exibir o conteúdo do site de forma adequada ao seu dispositivo;</li>
+      <li>Para entender quais receitas e categorias são mais acessadas e melhorar nosso conteúdo;</li>
+      <li>Para enviar novidades e receitas, caso você se cadastre voluntariamente em nossa newsletter;</li>
+      <li>Para exibir anúncios relevantes por meio do Google AdSense, conforme descrito abaixo.</li>
+    </ul>
+
+    <h3>4. Publicidade e cookies do Google AdSense</h3>
+    <p>Este site utiliza o <strong>Google AdSense</strong> para exibir anúncios. Fornecedores terceiros, incluindo o Google, usam cookies para veicular anúncios com base em visitas anteriores do usuário a este e a outros sites.</p>
+    <ul>
+      <li>O uso de cookies de publicidade permite que o Google e seus parceiros exibam anúncios com base nas suas visitas a este site e/ou a outros sites na internet.</li>
+      <li>Você pode desativar a publicidade personalizada acessando as <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Configurações de anúncios do Google</a>.</li>
+      <li>Alternativamente, você pode desativar o uso de cookies de terceiros para publicidade personalizada acessando <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
+      <li>Saiba mais sobre como o Google usa dados quando você utiliza sites de nossos parceiros em: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
+    </ul>
+
+    <h3>5. Compartilhamento de dados</h3>
+    <p>Não vendemos seus dados pessoais. Compartilhamos informações apenas com prestadores de serviço essenciais ao funcionamento do site (como hospedagem e o próprio Google AdSense), sempre limitados ao necessário para a finalidade descrita nesta política.</p>
+
+    <h3>6. Seus direitos como titular dos dados</h3>
+    <p>De acordo com a LGPD, você pode, a qualquer momento, solicitar:</p>
+    <ul>
+      <li>Confirmação da existência de tratamento dos seus dados;</li>
+      <li>Acesso, correção ou exclusão dos seus dados pessoais;</li>
+      <li>Revogação do consentimento dado (por exemplo, cancelamento da newsletter);</li>
+      <li>Informações sobre com quem compartilhamos seus dados.</li>
+    </ul>
+    <p>Para exercer esses direitos, entre em contato pelo e-mail indicado na seção 8.</p>
+
+    <h3>7. Alterações nesta política</h3>
+    <p>Esta Política de Privacidade pode ser atualizada periodicamente para refletir mudanças em nossas práticas ou por exigências legais e regulatórias. Recomendamos que você a revise de tempos em tempos.</p>
+
+    <h3>8. Contato</h3>
+    <p>Em caso de dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, entre em contato pelo e-mail: <strong>contato@tudodeliciosoonline.com.br</strong> <em>(substitua pelo e-mail real do site antes de publicar)</em>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="color:#fff;">Tudo Delicioso<span style="color:var(--mustard)"> Online.</span></div>
+      <p style="max-width:280px; font-size:13.5px; margin-top:12px;">Receitas testadas, explicadas do seu jeito, para quem ama cozinhar em casa — do café da manhã à sobremesa.</p>
+    </div>
+    <div>
+      <h5>Categorias</h5>
+      <ul>
+        <li><a href="#categorias">Bolos e Tortas</a></li>
+        <li><a href="#categorias">Carnes</a></li>
+        <li><a href="#categorias">Aves</a></li>
+        <li><a href="#categorias">Massas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Especiais</h5>
+      <ul>
+        <li><a href="#populares">Mais Populares</a></li>
+        <li><a href="#airfryer">Airfryer</a></li>
+        <li><a href="#ferias">Férias das Crianças</a></li>
+        <li><a href="#todas">Todas as Receitas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Site</h5>
+      <ul>
+        <li><a href="#">Sobre Nós</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#politica-de-privacidade">Política de Privacidade</a></li>
+        <li><a href="#">Termos de Uso</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Tudo Delicioso Online. Todos os direitos reservados.</span>
+    <span>Feito com carinho para quem ama cozinhar.</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal">
+    <div class="m-thumb">
+      <img id="mThumb" src="" alt="">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-tag" id="mTag"></div>
+      <h3 id="mTitle"></h3>
+      <div class="m-meta" id="mMeta"></div>
+      <h4>Ingredientes</h4>
+      <ul id="mIngredients"></ul>
+      <h4>Modo de Preparo</h4>
+      <ol id="mSteps"></ol>
+    </div>
+  </div>
+</div>
+
+<script>
+const recipes = {
+  bolo_chocolate: {
+    tag: "Bolos e Tortas", title: "Bolo de Chocolate Fofinho com Ganache",
+    time: "50 min", servings: "10 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["3 ovos","2 xícaras de açúcar","1 xícara de óleo","2 xícaras de farinha de trigo","1 xícara de chocolate em pó ou achocolatado","1 xícara de água quente","1 colher (sopa) de fermento em pó","1 lata de creme de leite","200 g de chocolate meio amargo picado","1 colher (sopa) de manteiga"],
+    steps: ["Bata os ovos com o açúcar até formar um creme claro e depois acrescente o óleo.","Alterne a farinha, o chocolate em pó e a água quente, misturando bem entre cada adição.","Por último, acrescente o fermento e misture delicadamente com uma colher.","Despeje em uma forma untada e enfarinhada e asse em forno preaquecido a 180°C por cerca de 35-40 minutos.","Para a ganache, derreta o chocolate com o creme de leite e a manteiga em banho-maria até ficar liso.","Espere o bolo esfriar por completo, desenforme e cubra com a ganache."]
+  },
+  carne_panela: {
+    tag: "Carnes", title: "Carne de Panela com Legumes",
+    time: "1h 10min", servings: "6 porções", difficulty: "Médio",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 kg de acém ou músculo em cubos","2 cebolas picadas","3 dentes de alho picados","2 tomates picados","2 cenouras em rodelas","3 batatas em cubos","1 folha de louro","Sal e pimenta-do-reino a gosto","Óleo e água ou caldo de carne"],
+    steps: ["Tempere a carne com sal e pimenta e sele em fogo alto até dourar de todos os lados. Reserve.","Na mesma panela, refogue a cebola e o alho até murchar.","Volte a carne para a panela, acrescente o tomate, o louro e água até cobrir.","Cozinhe na panela de pressão por cerca de 25 minutos após pegar pressão.","Abra a panela, acrescente a batata e a cenoura e cozinhe por mais 10-15 minutos, sem tampa, até os legumes ficarem macios e o molho encorpar.","Ajuste o sal e sirva com arroz branco."]
+  },
+  frango_parmegiana: {
+    tag: "Aves", title: "Frango à Parmegiana Clássico",
+    time: "45 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 filés de peito de frango","Sal e pimenta-do-reino a gosto","2 ovos batidos","1 xícara de farinha de trigo","1 xícara de farinha de rosca","2 xícaras de molho de tomate","200 g de mussarela ralada","Orégano a gosto","Azeite"],
+    steps: ["Bata os filés levemente para deixá-los com espessura uniforme e tempere com sal e pimenta.","Passe cada filé na farinha de trigo, depois no ovo batido e por fim na farinha de rosca.","Frite os filés em óleo quente até dourarem dos dois lados (ou leve à airfryer a 200°C por 12-15 minutos, virando na metade).","Transfira os filés para um refratário, cubra com o molho de tomate, a mussarela ralada e o orégano.","Leve ao forno preaquecido a 200°C por cerca de 10-15 minutos, até o queijo derreter e dourar levemente.","Sirva com arroz branco e batatas fritas ou uma salada verde."]
+  },
+  salmao_grelhado: {
+    tag: "Peixes e Frutos do Mar", title: "Salmão Grelhado com Limão e Ervas",
+    time: "30 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 filés de salmão","Suco e raspas de 1 limão","2 dentes de alho picados","Azeite a gosto","Sal e pimenta-do-reino a gosto","Ramos de alecrim ou tomilho","1 colher (sopa) de manteiga"],
+    steps: ["Tempere os filés de salmão com sal, pimenta, suco de limão e alho e deixe marinar na geladeira por 15-20 minutos.","Aqueça uma frigideira antiaderente com azeite e a manteiga em fogo médio-alto.","Coloque o salmão com a pele voltada para baixo e grelhe por cerca de 4-5 minutos sem mexer.","Vire com cuidado e grelhe do outro lado por mais 3-4 minutos, até dourar e cozinhar por dentro.","Finalize com raspas de limão e as ervas frescas por cima.","Sirva com legumes salteados ou um arroz branco soltinho."]
+  },
+  salada_caesar: {
+    tag: "Saladas e Molhos", title: "Salada Caesar com Frango Grelhado",
+    time: "25 min", servings: "3 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 pé de alface romana","2 filés de peito de frango grelhados e fatiados","1 xícara de croutons","1/2 xícara de parmesão ralado","4 colheres (sopa) de maionese","1 colher (chá) de mostarda","1 dente de alho amassado","Suco de 1/2 limão"],
+    steps: ["Tempere e grelhe os filés de frango até dourarem por completo. Deixe descansar e fatie.","Lave e rasgue as folhas de alface romana com as mãos.","Misture a maionese, a mostarda, o alho e o suco de limão para fazer o molho.","Monte a salada com a alface, o frango fatiado, os croutons e o parmesão.","Regue com o molho na hora de servir para manter a folha crocante."]
+  },
+  creme_abobora: {
+    tag: "Sopas", title: "Creme de Abóbora com Gengibre",
+    time: "40 min", servings: "5 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 kg de abóbora cabotiá em cubos","1 cebola picada","2 dentes de alho picados","1 colher (chá) de gengibre ralado","1 litro de caldo de legumes","Sal e pimenta a gosto","Azeite","Creme de leite (opcional)"],
+    steps: ["Refogue a cebola, o alho e o gengibre no azeite até ficarem perfumados.","Acrescente a abóbora em cubos e o caldo de legumes.","Cozinhe em fogo médio até a abóbora ficar bem macia, cerca de 20 minutos.","Bata tudo no liquidificador até obter um creme liso.","Retorne à panela, ajuste o sal e a pimenta e finalize com um fio de azeite ou um pouco de creme de leite."]
+  },
+  macarrao_alho_oleo: {
+    tag: "Massas", title: "Macarrão ao Alho e Óleo com Brócolis",
+    time: "25 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["500 g de espaguete","5 dentes de alho fatiados","1/2 xícara de azeite","1 maço de brócolis em buquês","Pimenta calabresa a gosto","Sal a gosto","Parmesão ralado e salsinha para finalizar"],
+    steps: ["Cozinhe o macarrão em água fervente com sal até ficar al dente. Reserve um pouco da água do cozimento.","Escalde o brócolis em água fervente por 2 minutos e depois em água gelada.","Em fogo baixo, doure o alho no azeite até ficar levemente dourado, sem queimar.","Acrescente a pimenta calabresa, o macarrão escorrido e o brócolis, misturando bem.","Se necessário, adicione um pouco da água do cozimento para soltar o molho.","Finalize com parmesão ralado e salsinha picada."]
+  },
+  suco_detox: {
+    tag: "Bebidas", title: "Suco Detox Verde",
+    time: "10 min", servings: "2 copos", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["2 folhas de couve","1 maçã verde picada","1 pedaço pequeno de gengibre","Suco de 1 limão","300 ml de água gelada ou água de coco"],
+    steps: ["Lave bem as folhas de couve.","Bata todos os ingredientes no liquidificador até ficar homogêneo.","Coe se preferir uma textura mais fina.","Sirva imediatamente, bem gelado."]
+  },
+  brigadeiro: {
+    tag: "Doces e Sobremesas", title: "Brigadeiro Tradicional",
+    time: "20 min", servings: "20 unidades", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 lata de leite condensado","3 colheres (sopa) de chocolate em pó","1 colher (sopa) de manteiga","Granulado de chocolate para enrolar"],
+    steps: ["Em uma panela, misture o leite condensado, o chocolate em pó e a manteiga.","Leve ao fogo baixo, mexendo sempre, até a mistura engrossar e soltar do fundo da panela.","Transfira para um prato untado e deixe esfriar completamente.","Com as mãos untadas, enrole pequenas bolinhas e passe no granulado."]
+  },
+  sanduiche_natural: {
+    tag: "Lanches", title: "Sanduíche Natural de Frango",
+    time: "20 min", servings: "4 sanduíches", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["8 fatias de pão de forma integral","2 filés de peito de frango cozidos e desfiados","1 cenoura ralada","3 colheres (sopa) de milho","4 colheres (sopa) de requeijão light ou iogurte natural","Sal e cheiro-verde a gosto"],
+    steps: ["Misture o frango desfiado com o requeijão ou iogurte, a cenoura, o milho e os temperos.","Distribua o recheio entre as fatias de pão.","Feche os sanduíches e corte em triângulos.","Sirva em seguida ou embale para levar."]
+  },
+  bowl_quinoa: {
+    tag: "Alimentação Saudável", title: "Bowl de Quinoa com Legumes Assados",
+    time: "40 min", servings: "3 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 xícara de quinoa","1 abobrinha em cubos","1 batata-doce em cubos","1 pimentão em tiras","1 xícara de grão-de-bico cozido","Folhas verdes a gosto","Azeite, sal e pimenta a gosto","Iogurte e limão para o molho"],
+    steps: ["Cozinhe a quinoa conforme as instruções da embalagem e reserve.","Tempere os legumes com azeite, sal e pimenta e asse a 200°C por cerca de 25 minutos, até dourarem.","Misture o iogurte com suco de limão, sal e pimenta para o molho.","Monte o bowl com a quinoa, os legumes assados, o grão-de-bico e as folhas verdes.","Regue com o molho de iogurte na hora de servir."]
+  },
+  frango_airfryer: {
+    tag: "Airfryer", title: "Frango à Parmegiana na Airfryer",
+    time: "35 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 filés de peito de frango","Sal e pimenta a gosto","2 ovos batidos","Farinha de trigo e farinha de rosca","Óleo em spray","1 xícara de molho de tomate","Mussarela ralada e orégano"],
+    steps: ["Tempere os filés e empane na farinha de trigo, no ovo e depois na farinha de rosca.","Borrife um pouco de óleo nos filés empanados.","Leve à airfryer preaquecida a 200°C por 12-15 minutos, virando na metade do tempo.","Transfira para um refratário, cubra com o molho de tomate, a mussarela e o orégano.","Volte à airfryer por mais 4-5 minutos, até o queijo derreter e gratinar."]
+  },
+  batata_airfryer: {
+    tag: "Airfryer", title: "Batata Frita Crocante na Airfryer",
+    time: "30 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 batatas médias cortadas em palitos","2 colheres (sopa) de azeite","Sal a gosto","Páprica doce (opcional)"],
+    steps: ["Deixe as batatas de molho em água fria por 15 minutos para tirar o excesso de amido e depois seque bem.","Misture as batatas com o azeite, o sal e a páprica.","Coloque na cesta da airfryer sem sobrepor demais e leve a 200°C por 18-20 minutos.","Sacuda a cesta na metade do tempo para dourar por igual.","Sirva imediatamente, bem crocante."]
+  },
+  salmao_airfryer: {
+    tag: "Airfryer", title: "Salmão na Airfryer com Ervas",
+    time: "20 min", servings: "2 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["2 filés de salmão","Azeite a gosto","Sal e pimenta a gosto","Raspas de limão e ervas frescas"],
+    steps: ["Tempere os filés com sal, pimenta, azeite e raspas de limão.","Preaqueça a airfryer a 200°C.","Coloque o salmão com a pele voltada para baixo na cesta.","Asse por cerca de 12-15 minutos, sem precisar virar.","Finalize com ervas frescas antes de servir."]
+  },
+  pipoca_doce: {
+    tag: "Férias das Crianças", title: "Pipoca Doce Colorida",
+    time: "15 min", servings: "6 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1578849278619-e73505e9610f?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1/2 xícara de milho de pipoca","3 colheres (sopa) de açúcar","1 colher (sopa) de óleo","Corante alimentício colorido (opcional)"],
+    steps: ["Aqueça o óleo em uma panela grande com tampa em fogo médio.","Adicione o milho e o açúcar (e o corante, se for usar) e misture rapidamente.","Tampe a panela e deixe estourar, balançando de vez em quando.","Quando as estouradas diminuírem, desligue o fogo e sirva em seguida — com a ajuda de um adulto por perto do fogão."]
+  },
+  cupcake_decorado: {
+    tag: "Férias das Crianças", title: "Cupcakes Decorados em Família",
+    time: "45 min", servings: "12 cupcakes", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["2 xícaras de farinha de trigo","1 xícara de açúcar","2 ovos","1/2 xícara de óleo","1/2 xícara de leite","1 colher (sopa) de fermento em pó","1 colher (chá) de essência de baunilha","Chantilly ou glacê e confeitos coloridos para decorar"],
+    steps: ["Misture os ovos, o açúcar, o óleo, o leite e a baunilha até ficar homogêneo.","Acrescente a farinha e o fermento, misturando delicadamente.","Distribua a massa em forminhas de cupcake e asse a 180°C por 18-20 minutos.","Deixe esfriar completamente antes de decorar.","Deixe as crianças decorarem com chantilly, glacê e confeitos coloridos, com supervisão de um adulto."]
+  },
+  sanduiche_carinha: {
+    tag: "Férias das Crianças", title: "Sanduíche Carinha Feliz",
+    time: "15 min", servings: "4 sanduíches", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 fatias de pão de forma","Fatias de queijo e presunto","Fatias de tomate, azeitona e cenoura para decorar","Cortadores de biscoito com formatos divertidos"],
+    steps: ["Monte o sanduíche normalmente com o pão, o queijo e o presunto.","Use os cortadores para dar um formato divertido ao sanduíche (estrela, coração, etc.).","Decore por cima com pedaços de tomate, azeitona e cenoura para criar uma carinha.","Deixe as crianças participarem da decoração — é a parte mais divertida!"]
+  },
+  torta_limao: {
+    tag: "Bolos e Tortas", title: "Torta de Limão Geladinha",
+    time: "50 min + geladeira", servings: "10 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1519340333755-56e9c1d04579?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["200 g de biscoito maisena triturado","100 g de manteiga derretida","1 lata de leite condensado","Suco e raspas de 3 limões","1 caixinha de creme de leite","3 claras","4 colheres (sopa) de açúcar para o merengue"],
+    steps: ["Misture o biscoito triturado com a manteiga derretida e forre o fundo de uma forma de fundo removível.","Bata o leite condensado com o suco e as raspas de limão até engrossar, depois incorpore o creme de leite.","Despeje o recheio sobre a base e leve à geladeira por pelo menos 3 horas.","Bata as claras em neve, acrescente o açúcar aos poucos até formar um merengue firme.","Cubra a torta gelada com o merengue e, se quiser, maçarique ou leve rapidamente ao forno bem quente para dourar."]
+  },
+  strogonoff_carne: {
+    tag: "Carnes", title: "Strogonoff de Carne",
+    time: "35 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["500 g de filé mignon ou coxão mole em tiras","1 cebola picada","2 dentes de alho picados","2 colheres (sopa) de ketchup","1 colher (sopa) de mostarda","1 caixinha de creme de leite","Sal e pimenta a gosto","Óleo"],
+    steps: ["Tempere a carne com sal e pimenta e sele rapidamente em fogo alto, em porções, para não soltar água. Reserve.","Na mesma panela, refogue a cebola e o alho até dourarem levemente.","Volte a carne para a panela e acrescente o ketchup e a mostarda, misturando bem.","Abaixe o fogo e adicione o creme de leite, mexendo até engrossar levemente.","Ajuste o sal e sirva imediatamente com arroz branco e batata palha."]
+  },
+  frango_grelhado_ervas: {
+    tag: "Aves", title: "Frango Grelhado com Limão e Alecrim",
+    time: "30 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 filés de peito de frango","Suco de 1 limão","2 dentes de alho picados","Alecrim fresco a gosto","Azeite, sal e pimenta a gosto"],
+    steps: ["Tempere os filés com sal, pimenta, alho, limão e alecrim e deixe marinar por 20 minutos.","Aqueça uma grelha ou frigideira com um fio de azeite em fogo médio-alto.","Grelhe os filés por cerca de 5-6 minutos de cada lado, até dourarem e cozinharem por completo.","Deixe descansar por 2 minutos antes de servir, para manter a suculência."]
+  },
+  tilapia_empanada: {
+    tag: "Peixes e Frutos do Mar", title: "Filé de Tilápia Empanado",
+    time: "30 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 filés de tilápia","Suco de 1 limão","Sal e pimenta a gosto","1 xícara de farinha de trigo","2 ovos batidos","1 xícara de farinha de rosca","Óleo para fritar"],
+    steps: ["Tempere os filés com sal, pimenta e limão e deixe descansar por 10 minutos.","Passe cada filé na farinha de trigo, depois no ovo batido e por fim na farinha de rosca.","Aqueça o óleo em fogo médio-alto e frite os filés até dourarem dos dois lados, cerca de 3-4 minutos por lado.","Escorra em papel-toalha e sirva com limão e uma salada fresca."]
+  },
+  salada_caprese: {
+    tag: "Saladas e Molhos", title: "Salada Caprese",
+    time: "10 min", servings: "3 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1608897013039-887f21d8c804?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["3 tomates maduros fatiados","200 g de mussarela de búfala fatiada","Folhas de manjericão fresco","Azeite extra virgem a gosto","Sal e pimenta a gosto","Redução de vinagre balsâmico (opcional)"],
+    steps: ["Alterne fatias de tomate e mussarela em um prato, formando um leque.","Distribua as folhas de manjericão por cima.","Tempere com sal, pimenta e um fio generoso de azeite.","Se quiser, finalize com um fio de redução de vinagre balsâmico antes de servir."]
+  },
+  canja_galinha: {
+    tag: "Sopas", title: "Canja de Galinha",
+    time: "50 min", servings: "6 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["500 g de peito de frango","1 cebola picada","2 dentes de alho picados","1 cenoura em cubos","1 xícara de arroz","Salsinha e cebolinha a gosto","Sal a gosto","Caldo de galinha ou água"],
+    steps: ["Cozinhe o frango em água temperada com sal até ficar macio. Retire, desfie e reserve o caldo.","No caldo, refogue a cebola e o alho, depois acrescente a cenoura.","Adicione o arroz e cozinhe até ficar bem macio, quase desmanchando, característica da canja.","Volte o frango desfiado para a panela e ajuste o sal.","Finalize com salsinha e cebolinha picadas antes de servir bem quente."]
+  },
+  lasanha_bolonhesa: {
+    tag: "Massas", title: "Lasanha à Bolonhesa",
+    time: "1h 20min", servings: "8 porções", difficulty: "Médio",
+    img: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["500 g de massa de lasanha","500 g de carne moída","1 cebola e 2 dentes de alho picados","2 latas de molho de tomate","500 ml de molho branco (leite, manteiga e farinha)","300 g de mussarela ralada","Parmesão ralado a gosto"],
+    steps: ["Refogue a cebola e o alho, adicione a carne moída e cozinhe até dourar. Junte o molho de tomate e deixe apurar por 15 minutos.","Prepare o molho branco derretendo a manteiga, adicionando a farinha e depois o leite aos poucos, mexendo até engrossar.","Em um refratário, monte camadas alternando massa, molho bolonhesa, molho branco e mussarela.","Finalize com parmesão por cima e cubra com papel-alumínio.","Asse a 200°C por 30 minutos coberta e mais 15 minutos sem a cobertura, até dourar."]
+  },
+  limonada_suica: {
+    tag: "Bebidas", title: "Limonada Suíça",
+    time: "10 min", servings: "4 copos", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1523371683702-9a0a9ce31a26?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 limões cortados em pedaços (com casca)","4 colheres (sopa) de açúcar","1 litro de água gelada","Gelo a gosto"],
+    steps: ["Bata os limões com o açúcar e um pouco da água no liquidificador por poucos segundos, só para extrair o suco (não bata demais para não amargar).","Coe para retirar as cascas e as sementes.","Misture com o restante da água gelada e o gelo.","Sirva imediatamente, bem gelada."]
+  },
+  pudim_leite_condensado: {
+    tag: "Doces e Sobremesas", title: "Pudim de Leite Condensado Tradicional",
+    time: "1h40 + geladeira", servings: "10 porções", difficulty: "Médio",
+    img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 lata de leite condensado","A mesma medida de leite (usando a lata)","3 ovos","1 xícara de açúcar para a calda","2 colheres (sopa) de água para a calda"],
+    steps: ["Prepare a calda levando o açúcar e a água ao fogo até caramelizar e dourar. Despeje na forma de pudim, cobrindo o fundo e as laterais.","Bata no liquidificador o leite condensado, o leite e os ovos até ficar homogêneo.","Despeje a mistura na forma caramelizada e cubra com papel-alumínio.","Leve para assar em banho-maria a 180°C por cerca de 1h30, até firmar (teste do palito).","Deixe esfriar e leve à geladeira por pelo menos 6 horas antes de desenformar."]
+  },
+  misto_quente: {
+    tag: "Lanches", title: "Misto Quente Crocante",
+    time: "15 min", servings: "2 sanduíches", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1528736235302-52922df5c122?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 fatias de pão de forma","4 fatias de queijo mussarela","4 fatias de presunto","1 colher (sopa) de manteiga"],
+    steps: ["Monte os sanduíches intercalando queijo e presunto entre as fatias de pão.","Passe manteiga nas faces externas do pão.","Grelhe em uma frigideira ou sanduicheira em fogo médio até dourar dos dois lados e o queijo derreter.","Corte ao meio e sirva quente."]
+  },
+  salada_grao_bico_atum: {
+    tag: "Alimentação Saudável", title: "Salada de Grão-de-Bico com Atum",
+    time: "15 min", servings: "3 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["2 xícaras de grão-de-bico cozido","1 lata de atum em água, escorrido","1/2 cebola roxa picada","1 tomate picado","Azeite, limão, sal e pimenta a gosto","Salsinha picada"],
+    steps: ["Misture o grão-de-bico, o atum, a cebola roxa e o tomate em uma tigela.","Tempere com azeite, suco de limão, sal e pimenta a gosto.","Finalize com salsinha picada e sirva em seguida ou gelada."]
+  },
+  bolo_cenoura: {
+    tag: "Bolos e Tortas", title: "Bolo de Cenoura com Cobertura de Chocolate",
+    time: "55 min", servings: "10 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["3 cenouras médias picadas","4 ovos","1 xícara de óleo","2 xícaras de açúcar","2 e 1/2 xícaras de farinha de trigo","1 colher (sopa) de fermento em pó","1 xícara de chocolate em pó","1 xícara de açúcar para a cobertura","3 colheres (sopa) de manteiga","5 colheres (sopa) de leite"],
+    steps: ["Bata no liquidificador as cenouras, os ovos e o óleo até ficar homogêneo.","Em uma tigela, misture essa mistura com o açúcar e a farinha, mexendo delicadamente.","Acrescente o fermento por último e despeje em forma untada.","Asse a 180°C por cerca de 40 minutos, até dourar e o palito sair limpo.","Para a cobertura, misture o chocolate em pó, o açúcar, a manteiga e o leite em uma panela e leve ao fogo baixo até engrossar levemente.","Despeje a cobertura ainda quente sobre o bolo assim que ele sair do forno."]
+  },
+  picanha_chapa: {
+    tag: "Carnes", title: "Picanha na Chapa com Farofa",
+    time: "35 min", servings: "5 porções", difficulty: "Médio",
+    img: "https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 kg de picanha em bifes grossos","Sal grosso a gosto","1 cebola fatiada","2 xícaras de farinha de mandioca","3 colheres (sopa) de manteiga","1 ovo cozido picado (opcional)"],
+    steps: ["Tempere os bifes de picanha com sal grosso pouco antes de assar.","Aqueça bem a chapa ou frigideira de ferro em fogo alto e sele os bifes por 3-4 minutos de cada lado, conforme o ponto desejado.","Retire e deixe descansar por alguns minutos antes de fatiar.","Na mesma chapa, doure a cebola na manteiga e junte a farinha de mandioca, mexendo até ficar levemente torrada.","Finalize a farofa com o ovo picado, se desejar, e sirva junto com a picanha fatiada."]
+  },
+  camarao_alho_oleo: {
+    tag: "Peixes e Frutos do Mar", title: "Camarão ao Alho e Óleo",
+    time: "20 min", servings: "4 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["500 g de camarão limpo","5 dentes de alho fatiados","4 colheres (sopa) de azeite","Suco de 1/2 limão","Sal e pimenta a gosto","Salsinha picada"],
+    steps: ["Tempere o camarão com sal, pimenta e limão.","Aqueça o azeite em fogo médio-alto e doure o alho até perfumar, sem queimar.","Adicione o camarão e refogue por 3-4 minutos, apenas até ficar rosado — camarão cozido demais fica borrachudo.","Finalize com salsinha picada e sirva imediatamente com arroz branco."]
+  },
+  sopa_feijao_bacon: {
+    tag: "Sopas", title: "Sopa de Feijão com Bacon",
+    time: "45 min", servings: "6 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1547424963-e4ff8e229c81?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["3 xícaras de feijão cozido","150 g de bacon em cubos","1 cebola picada","2 dentes de alho picados","1 cenoura em cubos","Caldo de legumes ou água","Sal e pimenta a gosto","Cheiro-verde para finalizar"],
+    steps: ["Frite o bacon em fogo médio até dourar e soltar a gordura. Reserve parte para decorar.","Na mesma panela, refogue a cebola e o alho na gordura do bacon.","Acrescente a cenoura, o feijão cozido e o caldo, cozinhando por 15 minutos.","Bata parcialmente no liquidificador (ou use um mixer de mão) para engrossar, deixando alguns grãos inteiros.","Ajuste o sal, finalize com o bacon reservado e cheiro-verde."]
+  },
+  mousse_maracuja: {
+    tag: "Doces e Sobremesas", title: "Mousse de Maracujá",
+    time: "15 min + geladeira", servings: "6 porções", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1488477304112-4944851de03d?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["1 lata de leite condensado","1 lata de creme de leite","Suco de 3 maracujás (ou 1 xícara de polpa)","1 envelope de gelatina incolor sem sabor (opcional, para firmar mais)"],
+    steps: ["Bata no liquidificador o leite condensado, o creme de leite e o suco de maracujá até ficar homogêneo.","Se for usar gelatina, hidrate conforme a embalagem e misture por último, ainda líquida.","Distribua em taças individuais.","Leve à geladeira por pelo menos 3 horas antes de servir, para firmar bem."]
+  },
+  omelete_claras_espinafre: {
+    tag: "Alimentação Saudável", title: "Omelete de Claras com Espinafre",
+    time: "15 min", servings: "1 porção", difficulty: "Fácil",
+    img: "https://images.unsplash.com/photo-1510693206972-df098062cb71?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["4 claras de ovo","1 xícara de folhas de espinafre","2 colheres (sopa) de cebola picada","Sal e pimenta a gosto","Azeite"],
+    steps: ["Bata levemente as claras com sal e pimenta.","Refogue a cebola e o espinafre em uma frigideira antiaderente com um fio de azeite até murchar.","Despeje as claras batidas por cima e deixe cozinhar em fogo baixo até firmar.","Dobre ao meio e sirva quente."]
+  }
+};
+
+const categoryOrder = [
+  "Bolos e Tortas","Carnes","Aves","Peixes e Frutos do Mar","Saladas e Molhos",
+  "Sopas","Massas","Bebidas","Doces e Sobremesas","Lanches","Alimentação Saudável"
+];
+const categoryTabs = {
+  "Bolos e Tortas":"doce","Carnes":"salgado","Aves":"salgado","Peixes e Frutos do Mar":"salgado",
+  "Saladas e Molhos":"leve","Sopas":"quente","Massas":"salgado","Bebidas":"leve",
+  "Doces e Sobremesas":"doce","Lanches":"rápido","Alimentação Saudável":"leve"
+};
+// as receitas de Airfryer e Férias das Crianças entram no catálogo geral com sua própria tag,
+// mas não compõem os 11 grupos temáticos principais do menu de categorias.
+
+function countByTag(tag){
+  return Object.values(recipes).filter(r => r.tag === tag).length;
+}
+
+const popularKeys = ["bolo_chocolate","frango_parmegiana","brigadeiro","macarrao_alho_oleo"];
+const airfryerKeys = ["frango_airfryer","batata_airfryer","salmao_airfryer"];
+const kidsKeys = ["pipoca_doce","cupcake_decorado","sanduiche_carinha"];
+
+function cardHTML(key){
+  const r = recipes[key];
+  return `<div class="recipe-card" onclick="openModal('${key}')">
+    <div class="thumb"><span class="chip">${r.tag}</span><img src="${r.img}" alt="${r.title}"></div>
+    <div class="body">
+      <h4>${r.title}</h4>
+      <div class="meta"><span>⏱ ${r.time}</span><span>🍽 ${r.servings}</span></div>
+      <div class="cta">Ver receita completa →</div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('popularGrid').innerHTML = popularKeys.map(cardHTML).join('');
+document.getElementById('airfryerGrid').innerHTML = airfryerKeys.map(cardHTML).join('');
+document.getElementById('kidsGrid').innerHTML = kidsKeys.map(cardHTML).join('');
+
+document.getElementById('catGrid').innerHTML = categoryOrder.map(name => {
+  return `<div class="cat-card" onclick="filterAndScroll('${name}')">
+    <span class="cat-tab">${categoryTabs[name]}</span>
+    <h4>${name}</h4>
+    <div class="count">${countByTag(name)} receita(s) no site</div>
+  </div>`;
+}).join('') + `<div class="cat-card" onclick="filterAndScroll('Todas')">
+    <span class="cat-tab">índice</span>
+    <h4>Todas as Receitas</h4>
+    <div class="count">${Object.keys(recipes).length} receitas no total</div>
+  </div>`;
+
+function openModal(key){
+  const r = recipes[key];
+  document.getElementById('mThumb').src = r.img;
+  document.getElementById('mTag').textContent = r.tag;
+  document.getElementById('mTitle').textContent = r.title;
+  document.getElementById('mMeta').innerHTML = `<span>⏱ ${r.time}</span><span>🍽 ${r.servings}</span><span>👩‍🍳 ${r.difficulty}</span>`;
+  document.getElementById('mIngredients').innerHTML = r.ingredients.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('mSteps').innerHTML = r.steps.map(s=>`<li>${s}</li>`).join('');
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+
+function runSearch(){
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if(!q) return;
+  document.getElementById('allSearch').value = q;
+  activeFilter = "Todas";
+  renderAllGrid();
+  document.getElementById('todas').scrollIntoView();
+}
+
+/* ---- Todas as Receitas: filtros + busca ---- */
+const allFilterList = ["Todas", ...categoryOrder, "Airfryer", "Férias das Crianças"];
+let activeFilter = "Todas";
+
+document.getElementById('filterBar').innerHTML = allFilterList.map(name =>
+  `<button class="filter-chip${name==='Todas' ? ' active' : ''}" data-filter="${name}" onclick="setFilter('${name}')">${name}</button>`
+).join('');
+
+function setFilter(name){
+  activeFilter = name;
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.toggle('active', b.dataset.filter === name));
+  renderAllGrid();
+}
+
+function filterAndScroll(name){
+  setFilter(name);
+  document.getElementById('todas').scrollIntoView();
+}
+
+function renderAllGrid(){
+  const q = document.getElementById('allSearch').value.toLowerCase().trim();
+  const keys = Object.keys(recipes).filter(k => {
+    const r = recipes[k];
+    const matchesCat = activeFilter === "Todas" || r.tag === activeFilter;
+    const matchesSearch = !q || r.title.toLowerCase().includes(q) || r.tag.toLowerCase().includes(q);
+    return matchesCat && matchesSearch;
+  });
+  const grid = document.getElementById('allGrid');
+  grid.innerHTML = keys.length ? keys.map(cardHTML).join('') : `<div class="empty-state">Nenhuma receita encontrada. Tente outra busca ou categoria.</div>`;
+}
+
+document.getElementById('allSearch').addEventListener('input', renderAllGrid);
+renderAllGrid();
+</script>
+
+</body>
+</html>
